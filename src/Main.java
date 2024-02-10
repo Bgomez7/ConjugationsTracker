@@ -1,30 +1,14 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-
 public class Main {
-    public static void main(String[] args) throws IOException {
-        //File Reader
-        String file = "src\\FrenchConjugations.csv";
-        BufferedReader reader = null;
-        String line = "";
+    public static void main(String[] args) {
+        //Read in and hold csv data in a String[] arraylist.
+        CSVData data = new CSVData("src\\FrenchConjugations.csv");
 
-        //Read in csv data
-        try {
-            reader = new BufferedReader(new FileReader(file));
-            while((line = reader.readLine()) != null) {
-                String[] row = line.split(",");
-                for(String index : row) {
-                    System.out.printf(",", index);
-                }
-                System.out.println();
+        for(int i = 0; i < data.conjugations.size(); i++) {
+            String[] currentArr = data.conjugations.get(i);
+            for (String s : currentArr) {
+                System.out.print(s + " ");
             }
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        finally {
-            reader.close();
+            System.out.println();
         }
     }
 }
